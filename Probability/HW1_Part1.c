@@ -14,20 +14,20 @@ int main() {
 			printf("You just can enter R. \n");
 		}
 		if(redCard == 0 && color == 'R') {
-			printf("There is no Red Card now. /n");
-			printf("You just can enter B. /n");
+			printf("There is no Red Card now. \n");
+			printf("You just can enter B. \n");
 		}
 		if(color == 'B' && blackCard != 0) {
 			blackCard--;
 			totalCard = redCard + blackCard;
 			probability = (float)blackCard/(float)totalCard;
-			printf("%d %d = %f\n", blackCard, totalCard, probability);
+			printf("%d / %d = %f\n", blackCard, totalCard, probability);
 		}
 		else if(color == 'R' && redCard != 0) {
 			redCard--;
 			totalCard = redCard + blackCard;
 			probability = (float)blackCard/(float)totalCard;
-			printf("%d %d = %f\n", blackCard, totalCard, probability);
+			printf("%d / %d = %f\n", blackCard, totalCard, probability);
 		}
 	}
 	return 0;
