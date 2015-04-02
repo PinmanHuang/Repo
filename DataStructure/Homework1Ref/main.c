@@ -1,7 +1,6 @@
 #include <ctype.h>
 #include "hex.h"
 #include <unistd.h>
-#include <string.h>
 #include <getopt.h>
 int main(int argc, char **argv) {
 	int counter = 0, index, c;
@@ -29,7 +28,7 @@ int main(int argc, char **argv) {
 				abort();
 		}
 	}
-	printf("in: %s, out: %s", infName, outfName);
+	printf("in: %s, out: %s \n", infName, outfName);
 	for(index = optind; index < argc; index++) {
 		printf("Non-option argument %s \n",argv[index]);
 	}
