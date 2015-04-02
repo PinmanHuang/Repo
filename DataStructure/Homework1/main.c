@@ -2,8 +2,8 @@
 #include <string.h>
 void main() { 
 	int counter = 0;
-	uint8_t out[] = "";
-	char in[] = "";
+	uint8_t out[50] = {0};
+	char in[100] = {0};
 	FILE *fptrR = fopen("ASCII.txt", "r"), *fptrW = fopen("hex.txt", "w");
 	if(fptrR == NULL)
 		printf("Error while opening the file. \n");

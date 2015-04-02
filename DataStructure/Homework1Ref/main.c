@@ -5,8 +5,8 @@
 #include <getopt.h>
 int main(int argc, char **argv) {
 	int counter = 0, index, c;
-	uint8_t out[] = "";
-	char in[] = "", *infName = NULL, *outfName = NULL;
+	uint8_t out[50] = {0};
+	char in[100] = {0}, *infName = NULL, *outfName = NULL;
 	
 	opterr = 0;
 	while((c = getopt( argc, argv, "i:o:")) != -1) {
