@@ -1,11 +1,11 @@
-#include <ctype.h>
 #include "hex.h"
+#include "base64.h"
+#include <ctype.h>
 #include <unistd.h>
 #include <getopt.h>
 int main(int argc, char **argv) {
 	int counter = 0, index, c;
-	uint8_t out[50] = {0};
-	char in[100] = {0}, *infName = NULL, *outfName = NULL;
+	char in[100] = {0}, out[50] = {0}, *infName = NULL, *outfName = NULL, *enc;
 	
 	opterr = 0;
 	while((c = getopt( argc, argv, "i:o:")) != -1) {
@@ -43,7 +43,11 @@ int main(int argc, char **argv) {
 	for(int i = 0; i < (counter/2); i++) {
 		printf("%d: %c \n", i, out[i]);
 	}
-	fprintf(fptrW, out);
+	enc = base64_encode(out, strlen(out));
+	printf("orginal: %s \n", out);
+	printf("base64 encoded: %s \n", enc);
+	fprintf(fptrW, enc);
 	fclose(fptrW);
+	free(enc);
 	return 0;
 }

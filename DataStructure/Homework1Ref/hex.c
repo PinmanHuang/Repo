@@ -1,6 +1,6 @@
 #include "hex.h"
 
-hex_decode(const char *inptr, size_t len, uint8_t *out) {
+hex_decode(const char *inptr, size_t len, char *out) {
 	unsigned int inCount, outCount, inFront, inBack;
 	for( outCount = 0, inCount = 0; inCount < len; inCount += 2, ++outCount) {
 		inFront = inptr[inCount] > '9' ? inptr[inCount] - 'A' + 10 : inptr[inCount] - '0';
