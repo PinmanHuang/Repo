@@ -1,14 +1,21 @@
 #include "hexCompressor.h"
-void main() {
-	char asciiInput[100], outputStack[50], test1, test2, testresult;
-	asciiInput[0] = '6';
-	asciiInput[1] = '5';
-	test1 = asciiInput[0] << 4;
-	test2 = asciiInput[1];
-	testresult = test1 | test2;
-	printf("Test1: %c \n", test1);
-	printf("Test2: %c \n", test2);
-	printf("testresult: %c \n", testresult);
-	compressToHex(&asciiInput[0], &asciiInput[1], &outputStack[0]);
-	printf("Hex digital: %c \n", outputStack);
+#include <string.h>
+void main() { 
+	int counter = 0;
+	uint8_t out[] = "";
+	char in[] = "";
+	FILE *fptrR = fopen("ASCII.txt", "r"), *fptrW = fopen("hex.txt", "w");
+	if(fptrR == NULL)
+		printf("Error while opening the file. \n");
+	while((in[counter] = fgetc(fptrR)) != EOF) {
+		counter++;
+	}
+	fclose(fptrR);
+	hex_decode(in, strlen(in) ,out);
+	for(int i = 0; i < (counter/2); i++) {
+		printf("%d: %c \n", i, out[i]);
+	}
+	fprintf(fptrW, out);
+	fclose(fptrW);
+	return 0;
 }
