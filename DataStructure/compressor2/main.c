@@ -5,12 +5,7 @@
 int main() {
 	int counter = 0, i = 0;
 	char out[50] = {};
-	char in[100] = {};
-
-	int fd = 0;
-    char buf[1024];
-    char src[1024];
-    char *base64_buf;
+	char in[100] = {}, *enc;
 
 	FILE *fptrR = fopen("ASCII.txt", "r"), *fptrW = fopen("hex.txt", "w");
 	//File open failed.
@@ -30,9 +25,11 @@ int main() {
 	fprintf(fptrW, out);
 	fclose(fptrW);
 
-	char *enc = base64_encode(out, strlen(out));
+	enc = base64_encode(out, strlen(out));
 	printf("\noriginal: %s\n", out);
 	printf("\nencoded : %s\n", enc);
+
 	free(enc);
+
 	return 0;
 }
