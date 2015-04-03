@@ -1,0 +1,28 @@
+# Ignore the file name begins with '.'#
+.*
+
+# Compile source # 
+##################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Package #
+###########
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
