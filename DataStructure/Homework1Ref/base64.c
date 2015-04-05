@@ -3,7 +3,6 @@ const char base[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456
 static char find_pos(char ch);
 char *base64_encode(const char* data, int data_len)
 {
-
     int prepare = 0;
     int ret_len;
     int temp = 0;
@@ -62,9 +61,7 @@ char *base64_encode(const char* data, int data_len)
         }
     }
     *f = '\0';
-
     return ret;
-
 }
 /* */
 static char find_pos(char ch)
