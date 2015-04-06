@@ -1,11 +1,10 @@
-#include "header.h"
+//__BASE64_H__
 #ifndef __BASE64_H__
 #define __BASE64_H__
 
-/*¥[±K*/
+//Encoding to base64
 char* base64_encode(const char* data, int data_len);
-/*¸Ñ±K*/
+//Decoding from base64 to original
 char *base64_decode(const char* data, int data_len);
 
-
-#endif /* __BASE64_H__ */
+#endif

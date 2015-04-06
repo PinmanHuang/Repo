@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include "hex.h"
 
 hex_decode(const char *inptr, size_t len, char *out) {

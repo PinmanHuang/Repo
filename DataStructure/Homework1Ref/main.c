@@ -1,14 +1,18 @@
-#include "hex.h"
-#include "base64.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 #include <unistd.h>
 #include <getopt.h>
+#include "hex.h"
+#include "base64.h"
+
 int main(int argc, char **argv) {
 	int counter = 0, index, c;
 	char in[100] = {0}, out[50] = {0}, *infName = NULL, *outfName = NULL, *enc;
-	
+
 	opterr = 0;
-	while((c = getopt( argc, argv, "i:o:")) != -1) {
+	while((c = getopt( argc, argv, "i:o:")) != -1) {	//Get option switch case.
 		switch(c) {
 			case 'i':
 				infName = optarg;
@@ -33,23 +37,14 @@ int main(int argc, char **argv) {
 		printf("Non-option argument %s \n",argv[index]);
 	}
 
-	FILE *fptrR = fopen(infName, "r"), *fptrW = fopen(outfName, "w");
+	FILE *fptrR = fopen(infName, "r"), *fptrW = fopen(outfName, "w");	//File read and write
 	if(fptrR == NULL)
 		printf("Error while opening the file. \n");
-	while((in[counter] = fgetc(fptrR)) != EOF) {
+	while((in[counter] = fgetc(fptrR)) != EOF)
 		counter++;
-		printf("counter: %d %c \n",counter, in[counter-1]);
-	}
 	fclose(fptrR);
-	printf("inLen: %d \n", strlen(in)); 
 	hex_decode(in, (strlen(in)-2) ,out);
-	for(int i = 0; i < (counter/2); i++) {
-		printf("%d: %c \n", i, out[i]);
-	}
-	printf("outLen: %d \n", strlen(out));
 	enc = base64_encode(out, strlen(out));
-	printf("orginal: %s \n", out);
-	printf("base64 encoded: %s \n", enc);
 	fprintf(fptrW, enc);
 	fclose(fptrW);
 	free(enc);
