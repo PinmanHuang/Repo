@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv) {
 	int counter = 0, index, c;
-	char in[100] = {0}, out[50] = {0}, *infName = NULL, *outfName = NULL, *enc;
+	char in[100] = {0}, out[50] = {0}, *infName = NULL, *outfName = NULL, *enc, *dec;
 
 	opterr = 0;
 	while((c = getopt( argc, argv, "i:o:")) != -1) {	//Get option switch case.
@@ -45,6 +45,8 @@ int main(int argc, char **argv) {
 	fclose(fptrR);
 	hex_decode(in, (strlen(in)-2) ,out);
 	enc = base64_encode(out, strlen(out));
+	dec = base64_decode(enc, strlen(enc));
+	printf("dec: %s \n", dec);
 	fprintf(fptrW, enc);
 	fclose(fptrW);
 	free(enc);
