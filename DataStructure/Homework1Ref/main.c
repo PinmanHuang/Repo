@@ -8,12 +8,18 @@
 #include "base64.h"
 
 int main(int argc, char **argv) {
-	int counter = 0, index, c;
-	char in[100] = {0}, out[50] = {0}, *infName = NULL, *outfName = NULL, *enc, *dec;
+	int counter = 0, index, c, cflag = 0, dflag = 0;
+	char in[100] = {0}, out[50] = {0}, *infName = NULL, *outfName = NULL, *enc, *dec = NULL;
 
 	opterr = 0;
-	while((c = getopt( argc, argv, "i:o:")) != -1) {	//Get option switch case.
+	while((c = getopt( argc, argv, "cdi:o:")) != -1) {	//Get option switch case.
 		switch(c) {
+			case 'c':
+				cflag = 1;
+				break;
+			case 'd':
+				dflag = 1;
+				break;
 			case 'i':
 				infName = optarg;
 				break;
@@ -43,12 +49,20 @@ int main(int argc, char **argv) {
 	while((in[counter] = fgetc(fptrR)) != EOF)
 		counter++;
 	fclose(fptrR);
-	hex_decode(in, (strlen(in)-2) ,out);
-	enc = base64_encode(out, strlen(out));
-	dec = base64_decode(enc, strlen(enc));
-	printf("dec: %s \n", dec);
-	fprintf(fptrW, enc);
-	fclose(fptrW);
-	free(enc);
+	if(cflag == 1) {
+		hex_encode(in, (strlen(in)-2) ,out);
+		enc = base64_encode(out, strlen(out));
+		fprintf(fptrW, enc);
+		fclose(fptrW);
+		free(enc);
+	}
+	if(dflag == 1) {
+		dec = base64_decode(in, strlen(in));
+		hex_decode(dec, (strlen(dec)), out);
+		printf("out: %s \n", out);
+		fprintf(fptrW, out);
+		fclose(fptrW);
+		free(dec);
+	}
 	return 0;
 }
