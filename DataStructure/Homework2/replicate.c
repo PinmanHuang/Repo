@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "replicate.h"
 
 char *replicate(char *indata, size_t strLength, size_t recurTimes) {
 	char *strBuffer, *strBuffer_pre;
