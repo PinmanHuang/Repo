@@ -3,18 +3,20 @@
 #include <string.h>
 #include "replicate.h"
 
-char *replicate(char *indata, size_t strLength, size_t recurTimes) {
-	char *strBuffer, *strBuffer_pre;
-	if(recurTimes == 0) {
-		strBuffer = malloc(1);
-		strBuffer[0] = '\0';
-		return strBuffer;
+char static *dynamicAdd;
+static int nowRecurTime = 1;
+char *buffer;
+char *replicate(char *inData, int recurTimes) {
+	if(nowRecurTime == 1) {
+		buffer = malloc(strlen(inData)*(size_t)recurTimes);
+		dynamicAdd = buffer;
 	}
-	strBuffer = (char *)malloc(strLength*recurTimes+1);
-	strBuffer_pre = replicate(indata, strLength, recurTimes-1);
-
-	strcpy(strBuffer, strBuffer_pre);
-	strcpy(strBuffer+(recurTimes-1)*strLength, indata);
-	free(strBuffer_pre);
-	return strBuffer;
+	else if(nowRecurTime == recurTimes) {
+		strcpy(dynamicAdd, inData);
+		return 0;
+	}
+	strcpy(dynamicAdd, inData);
+	dynamicAdd += strlen(inData);
+	nowRecurTime += 1;
+	replicate(inData, recurTimes);	
 }

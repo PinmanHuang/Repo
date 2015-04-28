@@ -5,8 +5,7 @@
 #include "replicate.h"
 
 int main() {
-	char instr[1000] = {0};
-	size_t strLenth;
+	char instr[1000] = {0}, *outstr;
 	int recurTimes;
 	double diffTime;
 	clock_t starTime, endTime;
@@ -15,11 +14,13 @@ int main() {
 	printf("Enter the times you want to repeat: ");
 	scanf("%d", &recurTimes);
 	starTime = clock();
-	strLenth = strlen(instr);
-	printf("Output: %s \n", replicate(instr, strLenth, (size_t)recurTimes));
+	replicate(instr, recurTimes);
 	endTime = clock();
-	diffTime = endTime - starTime;
-	printf("run time: %f \n", diffTime/CLOCKS_PER_SEC);
-	printf("inLen: %zd \noutLen: %zd \n", strLenth, strlen(replicate(instr, strLenth, (size_t)recurTimes)));
+	printf("Output: %s \n", buffer);
+	free(buffer);
+	diffTime = ((double)(endTime - starTime))/CLOCKS_PER_SEC;
+//	diffTime = diffTime/CLOCKS_PER_SEC;
+	printf("run time: %f sec \n", diffTime);
+//	printf("inLen: %zd \noutLen: %zd \n", strLenth, strlen(replicate(instr, strLenth, (size_t)recurTimes)));
 	return 0;
 }

@@ -2,5 +2,6 @@
 #ifndef __REPLICATE_H__
 #define __REPLICATE_H__
 
-extern char* replicate(char*, size_t, size_t);
+extern char* buffer;
+extern char* replicate(char*, int);
 #endif
