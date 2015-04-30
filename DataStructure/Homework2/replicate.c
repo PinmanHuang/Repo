@@ -6,7 +6,7 @@
 char static *dynamicAdd;
 static int nowRecurTime = 1;
 char *buffer;
-char *replicate(char *inData, int recurTimes) {
+char* replicate(char *inData, int recurTimes) {
 	if(nowRecurTime == 1) {
 		buffer = malloc(strlen(inData)*(size_t)recurTimes);
 		dynamicAdd = buffer;
