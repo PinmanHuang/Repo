@@ -8,7 +8,7 @@ int main() {
 	char instr[1000] = {0}, *outstr;
 	int recurTimes;
 	double diffTime;
-	clock_t starTime, endTime;
+	clock_t starTime, endTime, printTime;
 	printf("Enter the string: ");
 	scanf("%s", instr);
 	printf("Enter the times you want to repeat: ");
@@ -16,11 +16,13 @@ int main() {
 	starTime = clock();
 	replicate(instr, recurTimes);
 	endTime = clock();
-	printf("Output: %s \n", buffer);
-	free(buffer);
 	diffTime = ((double)(endTime - starTime))/CLOCKS_PER_SEC;
-//	diffTime = diffTime/CLOCKS_PER_SEC;
-	printf("run time: %f sec \n", diffTime);
-//	printf("inLen: %zd \noutLen: %zd \n", strLenth, strlen(replicate(instr, strLenth, (size_t)recurTimes)));
+	printf("Output: %s \n", buffer);
+	printTime = clock();
+	printf("(Recursive) run time: %f sec \n", diffTime);
+	diffTime = ((double)(printTime - endTime))/CLOCKS_PER_SEC;
+	printf("(Print) run time: %f sec \n", diffTime);
+	printf("in: %zd byte \nout: %zd byte \n", strlen(instr), strlen(buffer));
+	free(buffer);
 	return 0;
 }
