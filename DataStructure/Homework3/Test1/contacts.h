@@ -4,7 +4,7 @@
 #define MaxMember 94
 struct contact{
     int strInt;
-    char string[7];
+    char memString[7];
 };
 typedef struct contact CONTACT;
 
