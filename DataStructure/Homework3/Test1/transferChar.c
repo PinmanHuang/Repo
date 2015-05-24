@@ -7,10 +7,16 @@
 int CharToInt(CONTACT profile[MaxMember]) {
     int memNum=0;
     FILE *fptr = fopen("contacts.txt", "r");
+    if(fptr == NULL) {
+        printf("File not exist.\n");
+        exit(EXIT_FAILURE);
+    }
     while(!feof(fptr)) {
         fscanf(fptr, "%s", &profile[memNum].strInt);
-    printf("%d - %d\n", memNum, profile[memNum].strInt);
-    memNum++;
+    
+        //印出每一筆資料對應數值
+        //printf("%d - %d\n", memNum, profile[memNum].strInt);
+        memNum++;
     }
     fclose(fptr);
     printf("memNum: %d\n", memNum);
@@ -26,7 +32,7 @@ int CharToStr(CONTACT profile[MaxMember]) {
         exit(EXIT_FAILURE);
     }
     while(fgets(profile[memNum].memString, sizeof(profile[memNum].memString), fptr)) {
-        printf("%d - %s\n", memNum, profile[memNum].memString);
+        //printf("%d - %s\n", memNum, profile[memNum].memString);
         memNum++;
     }
     fclose(fptr);
