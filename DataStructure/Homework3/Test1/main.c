@@ -27,7 +27,7 @@ int main() {
     if(p == NULL)
         printf("不存在\n");
     else
-        printf("存在: %s - %d\n", &searchInt, p->dataInt);
+        printf("存在: %s (%d)\n", &searchInt, p->dataInt);
     disposeTree(t);
     return 0;
 }
