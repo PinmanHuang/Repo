@@ -13,13 +13,12 @@ int CharToInt(CONTACT profile[MaxMember]) {
     }
     while(!feof(fptr)) {
         fscanf(fptr, "%s", &profile[memNum].strInt);
-    
         //印出每一筆資料對應數值
-        printf("%d - %d\n", memNum, profile[memNum].strInt);
+        //printf("%d - %d\n", memNum, profile[memNum].strInt);
         memNum++;
     }
     fclose(fptr);
-    printf("memNum: %d\n", memNum);
+    //printf("memNum: %d\n", memNum);
     return memNum;
 }
 
@@ -32,10 +31,10 @@ int CharToStr(CONTACT profile[MaxMember]) {
         exit(EXIT_FAILURE);
     }
     while(fgets(profile[memNum].memString, 50, fptr)) {
-        printf("%d - %s", memNum, profile[memNum].memString);
+        //printf("%d - %s", memNum, profile[memNum].memString);
         memNum++;
     }
     fclose(fptr);
-    printf("memNum2: %d\n", memNum);
+    //printf("memNum2: %d\n", memNum);
     return memNum;
 }
