@@ -139,11 +139,11 @@ int getNode(NODE *n) {
     return n->dataInt;
 }
 
-//展現術結構
+//展現樹結構
 void display_avl(NODE *t) {
     if(t == NULL)
         return;
-    printf("%d", t->dataInt);
+    printf("%d[高度：%d]", t->dataInt, height(t));
     if(t->left != NULL)
         printf("(左：%d)", t->left->dataInt);
     if(t->right != NULL)

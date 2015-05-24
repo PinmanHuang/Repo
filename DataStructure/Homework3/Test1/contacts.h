@@ -1,7 +1,7 @@
 //__CONTACTS_H__
 #ifndef __CONTACTS_H__
 #define __CONTACTS_H__
-#define MaxMember 94
+#define MaxMember 95
 
 //通訊錄結構
 struct contact{
