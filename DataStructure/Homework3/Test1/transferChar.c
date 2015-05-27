@@ -12,7 +12,7 @@ int CharToInt(CONTACT profile[MaxMember]) {
         exit(EXIT_FAILURE);
     }
     while(!feof(fptr)) {
-        fscanf(fptr, "%s", &profile[memNum].strInt);
+        fscanf(fptr, "%s %d", &profile[memNum].strInt, &profile[memNum].phoneNum);
         //印出每一筆資料對應數值
         //printf("%d - %d\n", memNum, profile[memNum].strInt);
         memNum++;
@@ -30,8 +30,8 @@ int CharToStr(CONTACT profile[MaxMember]) {
         printf("File not exist.\n");
         exit(EXIT_FAILURE);
     }
-    while(fgets(profile[memNum].memString, 50, fptr)) {
-        //printf("%d - %s", memNum, profile[memNum].memString);
+    while(!feof(fptr)) {
+        fscanf(fptr, "%s %d", &profile[memNum].memString, &profile[memNum].phoneNum);
         memNum++;
     }
     fclose(fptr);
