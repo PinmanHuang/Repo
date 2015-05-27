@@ -94,7 +94,7 @@ static NODE* double_rotate_with_right(NODE *k1) {
 }
 
 //插入新節點
-NODE* insertNode(int strInt, NODE *t) {
+NODE* insertNode(int strInt, char nameStr[7], int phoneNum, NODE *t) {
     if(t == NULL) {
         t = (NODE*)malloc(sizeof(NODE));
         if(t==NULL) {
@@ -103,12 +103,14 @@ NODE* insertNode(int strInt, NODE *t) {
         }
         else {
             t->dataInt = strInt;
+			t->nameStr = nameStr;
+			t->phoneNum = phoneNum;
             t->height = 0;
             t->left = t->right = NULL;
         }
     }
     else if(strInt < t->dataInt) {
-        t->left = insertNode(strInt, t->left);
+        t->left = insertNode(strInt, nameStr, phoneNum, t->left);
         if(height(t->left) - height(t->right) == 2) {
             if(strInt < t->left->dataInt)
                 t = single_rotate_with_left(t);
@@ -117,7 +119,7 @@ NODE* insertNode(int strInt, NODE *t) {
         }
     }
     else if(strInt > t->dataInt) {
-        t->right = insertNode(strInt, t->right);
+        t->right = insertNode(strInt, nameStr, phoneNum, t->right);
         if(height(t->right) - height(t->left) == 2) {
             if(strInt > t->right->dataInt)
                 t = single_rotate_with_right(t);
@@ -143,13 +145,37 @@ int getNode(NODE *n) {
 void display_avl(NODE *t) {
     if(t == NULL)
         return;
-    printf("%d[高度：%d]", t->dataInt, height(t));
+    printf("%s %d", t->nameStr, t->dataInt);
     if(t->left != NULL)
-        printf("(左：%d)", t->left->dataInt);
+        printf("(左：%s %d)", t->left->nameStr, t->left->dataInt);
     if(t->right != NULL)
-        printf("(右: %d)", t->right->dataInt);
+        printf("(右: %s %d)", t->right->nameStr, t->right->dataInt);
     printf("\n");
 
     display_avl(t->left);
     display_avl(t->right);
+}
+
+void inorder(NODE *t) {
+    if (t->left != NULL)
+        inorder(t->left);
+    printf("%d %s\t", t->dataInt, t->nameStr);
+    if (t->right != NULL)
+        inorder(t->right);
+}
+
+void preorder(NODE *t) {
+    printf("%d %s\t", t->dataInt, t->nameStr);
+    if (t->left != NULL)
+        inorder(t->left);
+    if (t->right != NULL)
+        inorder(t->right);
+}
+
+void postorder(NODE *t) {
+    if (t->left != NULL)
+        inorder(t->left);
+    if (t->right != NULL)
+        inorder(t->right);
+    printf("%d %s\t", t->dataInt, t->nameStr);
 }
